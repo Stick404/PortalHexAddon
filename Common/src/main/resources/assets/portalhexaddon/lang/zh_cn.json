@@ -13,15 +13,17 @@
 
   "portalhexaddon.entry.hexways": "Hex Ways",
   "portalhexaddon.page.hexways.onewayportal": "接受三个向量和一个数。向量其一用作传送门起始点，其二用作传送门终点，其三用作传送门朝向；数用作传送门尺寸。可惜的是，媒质的平衡使得这一操作相当昂贵，每一级尺寸消耗 64 个充能紫水晶。",
-  "portalhexaddon.page.hexways.twowayportal": "接受三个向量和一个数。前两个向量用作传送门的两端，第三个用作传送门朝向；数用作传送门尺寸。该操作比单向传送门便宜许多，每一级尺寸仅需消耗 16 格充能紫水晶。",
+  "portalhexaddon.page.hexways.twowayportal": "接受三个向量和一个数。前两个向量用作传送门的两端，第三个用作传送门朝向；数用作传送门尺寸。该操作比单向传送门便宜许多，每一级尺寸仅需消耗 16 个充能紫水晶。",
   "portalhexaddon.page.hexways.summonscry": "与单向传送门类似，但我无法穿过它。好在这个图案不需要卷轴才可绘制，它也比单向传送门便宜许多，仅需大约 4 个紫水晶碎片。",
-  "portalhexaddon.page.hexways.moveportalinput": "接受一个传送门实体和一个位置向量，并将传送门的近端移至该向量处。极其适合移动放错位置的传送门。消耗 8 个紫水晶粉。",
+  "portalhexaddon.page.hexways.moveportalinput": "接受一个传送门实体和一个位置向量，并将传送门的近端移至该向量处。极其适合移动放错位置的传送门。消耗 1 个紫水晶粉。",
   "portalhexaddon.page.hexways.moveportaloutput": "接受一个传送门实体和一个位置向量，并将传送门的远端移至该向量处。我推测此操作会大大增强传送门施法范围的效应。消耗 16 个紫水晶粉。",
-  "portalhexaddon.page.hexways.removeportal": "接受一个传送门实体，并将其关闭，适用于那些减慢现实运转的传送门，也可拿来移除不想要的传送门。消耗 2 个紫水晶粉。",
-  "portalhexaddon.page.hexways.portalambit": "似乎由于某种奇怪力量的影响，施法范围会透过传送门计算，不过穿过后范围强度会减半。",
-  "portalhexaddon.page.hexways.setportalsides": "我确实钟爱六边形，不过这种形状并不是什么场合都适合用。可以用此操作修改传送门的边数，送入的数似乎会自动舍入。消耗 10 个紫水晶碎片。",
-  "portalhexaddon.page.hexways.resizeportal": "我确有不使用普通形状传送门的充分利用（就算只是想整蛊其他人也一样）。送入高度和宽度就可修改传送门的尺寸，不过此操作会把传送门变成六边形。消耗 16 个紫水晶碎片。",
+  "portalhexaddon.page.hexways.removeportal": "接受一个传送门实体，并将其关闭，适用于那些减慢现实运转的传送门，也可拿来移除不想要的传送门。消耗 16 个紫水晶碎片。",
+  "portalhexaddon.page.hexways.portalambit": "发现咒术传送门后，我还意识到我的施法范围能够穿过传送门，虽然会受到一定损耗。传送门后的施法范围似乎遵循如下公式：“(32 - 我的位置)/2”。它和移动传送门的法术配合使用，可以说潜力无限。",
+  "portalhexaddon.page.hexways.setportalsides": "我确实钟爱六边形，不过这种形状并不是什么场合都适合用。但我可以用此法术修改传送门的边数，送入的数似乎会自动舍入。消耗 10 个紫水晶碎片。",
+  "portalhexaddon.page.hexways.resizeportal": "我确有不使用普通尺寸传送门的充分理由（就算只是想整蛊其他人也一样）。送入高度和宽度就可修改传送门的尺寸，不过此操作会把传送门变成六边形。消耗紫水晶碎片的个数为高度和宽度的平均数。",
   "portalhexaddon.page.hexways.getoutputinfo": "这个小巧的图案会返回传送门的出口端，或者返回传送门的目的地向量。与传送门施法范围配合使用会很方便。就我体感而言，此操作没有消耗，真是奇怪。",
   "portalhexaddon.page.hexways.rotateportal": "我设错了传送门的朝向，好在我可以用这个法术调整它。不过此法术会同时旋转两端的朝向……消耗 2 个紫水晶粉，便宜到有些怪了，应当多加利用。",
-  "portalhexaddon.page.hexways.portalambittitle": "传送门施法范围"
+  "portalhexaddon.page.hexways.portalambittitle": "传送门施法范围",
+  "portalhexaddon.page.hexways.pageintro": "我发现了制造虫洞（或者说是电子隧穿？）的方式，仅凭媒质。这一发现的的基础在于另一个模组，“沉浸式传送门”。我需要立即将这一发现用到实践中去。",
+  "portalhexaddon.page.hexways.pageintrotitle": "咒术传送门？"
 }
