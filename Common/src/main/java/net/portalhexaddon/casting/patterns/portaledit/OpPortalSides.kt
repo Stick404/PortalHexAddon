@@ -8,6 +8,7 @@ import at.petrak.hexcasting.api.spell.mishaps.MishapBadEntity
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.Entity
 import net.portalhexaddon.portals.PortalHexUtils
+import qouteall.imm_ptl.core.portal.GeometryPortalShape
 import qouteall.imm_ptl.core.portal.Portal
 import qouteall.imm_ptl.core.portal.PortalManipulation
 import kotlin.math.roundToInt
@@ -57,6 +58,7 @@ class OpPortalSides : SpellAction {
 
             val flipPrt = PortalManipulation.findFlippedPortal(prt)
             val revPrt = PortalManipulation.findReversePortal(prt)
+
             if (revPrt !== null) {
                revFlipPrt = PortalManipulation.findFlippedPortal(revPrt)!!
             }

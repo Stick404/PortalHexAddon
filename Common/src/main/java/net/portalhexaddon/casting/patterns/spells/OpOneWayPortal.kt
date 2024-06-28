@@ -27,7 +27,7 @@ class OpOneWayPortal : SpellAction {
         val prtRot: Vec3 = args.getVec3(2,argc)
         val prtSize: Double = args.getDoubleBetween(3,1.0/10.0,10.0,argc)
 
-        val cost = (64 * MediaConstants.CRYSTAL_UNIT * prtSize).toInt()
+        val cost = (32 * MediaConstants.CRYSTAL_UNIT * prtSize).toInt()
 
         val prtPos3f = Vector3f(prtPos.x.toFloat(), prtPos.y.toFloat(), prtPos.z.toFloat())
 

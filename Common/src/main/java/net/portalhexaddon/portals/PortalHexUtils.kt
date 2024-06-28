@@ -37,7 +37,7 @@ class PortalHexUtils {
             val prtEnt: Iterable<Entity> = ctx.world.getLevel().getAllEntities()
             val portalsinambit: ArrayList<Entity> = ArrayList()
             for (Entity in prtEnt) {
-                if ((Entity.getEyePosition().distanceToSqr(ctx.caster.position()) <= 32.0 * 32.0)
+                if ((Entity.getEyePosition().distanceToSqr(ctx.position) <= 32.0 * 32.0)
                     && Portal.entityType == Entity.getType()
                     && ((Entity as Portal).teleportable)
                 ) {
@@ -47,7 +47,7 @@ class PortalHexUtils {
             return portalsinambit
         }
         fun PortalVecRotate(prtRot: Vec3): List<Vec3> {
-            var PrtRotCors: Vec3 = prtRot.cross(Vec3(0.0, 1.0, 0.0))
+            var PrtRotCors: Vec3 = prtRot.cross(Vec3(0.0, 1.0, 0.0)) //should be 0.0 0.25 0
             var PrtRotCorsCors: Vec3 = PrtRotCors.cross(prtRot)
 
             when (prtRot.y()) {

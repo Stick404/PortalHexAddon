@@ -12,7 +12,7 @@
   "hexcasting.spell.portalhexaddon:setportalsides": "Set Sides Portal",
 
   "portalhexaddon.entry.hexways": "Hex Ways",
-  "portalhexaddon.page.hexways.onewayportal": "Accepts a Vector for the portal spawn, one for output, a third for rotation, and a number for the size. This is unfortunately quite expensive due to the balance of media, costing 64 charged amethyst per size given",
+  "portalhexaddon.page.hexways.onewayportal": "Accepts a Vector for the portal spawn, one for output, a third for rotation, and a number for the size. This is unfortunately quite expensive due to the balance of media, costing 32 charged amethyst per size given",
   "portalhexaddon.page.hexways.twowayportal": "Accepts a Vector for a portal side, another one for the other portal side, a third for rotation, and a number for the size. This is much cheaper then 1 Way Portals, costing only 16 charged amethyst per size given",
   "portalhexaddon.page.hexways.summonscry": "Works like a 1 way portal, but I seem to not be able to travel through it. However I dont have to find a scroll for it, much cheaper too, costs about 4 shards",
   "portalhexaddon.page.hexways.moveportalinput": "Takes a portal entity and a location vector, and relocates the side you are looking at to that vector. This is perfect for moving portals I have missed placed. Costs a dust",

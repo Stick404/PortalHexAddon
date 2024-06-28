@@ -6,6 +6,7 @@ import at.petrak.hexcasting.api.spell.casting.CastingContext
 import at.petrak.hexcasting.api.spell.iota.Iota
 import at.petrak.hexcasting.api.spell.mishaps.MishapBadEntity
 import com.mojang.math.Quaternion
+import com.mojang.math.Vector3f
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.phys.Vec3
@@ -13,6 +14,7 @@ import net.portalhexaddon.portals.PortalHexUtils.Companion.PortalVecRotate
 import qouteall.imm_ptl.core.api.PortalAPI
 import qouteall.imm_ptl.core.portal.Portal
 import qouteall.imm_ptl.core.portal.PortalManipulation
+import qouteall.q_misc_util.my_util.DQuaternion
 
 class OpRotateSideOfPortal : SpellAction {
     /**
@@ -37,7 +39,6 @@ class OpRotateSideOfPortal : SpellAction {
     override fun execute(args: List<Iota>, ctx: CastingContext): Triple<RenderedSpell, Int, List<ParticleSpray>> {
         val prtEnt: Entity = args.getEntity(0,argc)
         val prtRot: Vec3 = args.getVec3(1,argc)
-
         ctx.isEntityInRange(prtEnt)
 
         if (prtEnt.type !== Portal.entityType) {
@@ -55,7 +56,8 @@ class OpRotateSideOfPortal : SpellAction {
         override fun cast(ctx: CastingContext) {
             val prt = (prtEntity as Portal)
             var revFlipPrt = prt
-
+            val quat = DQuaternion.fromMcQuaternion(Quaternion.fromXYZDegrees(Vector3f(prtRot.x.toFloat(),prtRot.y.toFloat(),prtRot.z.toFloat())))
+            //Quaternion.fromXYZ(prtRot.x.toFloat(),prtRot.y.toFloat(),prtRot.z.toFloat()))
             println(prt)
 
             val flipPrt = PortalManipulation.findFlippedPortal(prt)
@@ -64,14 +66,11 @@ class OpRotateSideOfPortal : SpellAction {
                 revFlipPrt = PortalManipulation.findFlippedPortal(revPrt)!!
             }
 
-            println(flipPrt)
-
-            print(PortalAPI.getPortalOrientationQuaternion(prt))
-            prt.setRotationTransformation(Quaternion.fromXYZ(PortalVecRotate(prtRot)[0].x.toFloat(),PortalVecRotate(prtRot)[0].y.toFloat(),PortalVecRotate(prtRot)[0].z.toFloat()))
+            prt.rotation = quat.toMcQuaternion()
             prt.reloadAndSyncToClient()
-            print(PortalAPI.getPortalOrientationQuaternion(prt))
+
             if (flipPrt !== null) {
-                flipPrt.setRotationTransformation(Quaternion.fromXYZ(PortalVecRotate(prtRot)[0].x.toFloat(),PortalVecRotate(prtRot)[0].y.toFloat(),PortalVecRotate(prtRot)[0].z.toFloat()))
+                PortalAPI.setPortalOrientationQuaternion(flipPrt, quat)
                 flipPrt.reloadAndSyncToClient()
             }
             if (revPrt !== null) {
