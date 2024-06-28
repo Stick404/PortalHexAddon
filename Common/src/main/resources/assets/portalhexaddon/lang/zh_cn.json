@@ -12,7 +12,7 @@
   "hexcasting.spell.portalhexaddon:setportalsides": "设置传送门边数",
 
   "portalhexaddon.entry.hexways": "Hex Ways",
-  "portalhexaddon.page.hexways.onewayportal": "接受三个向量和一个数。向量其一用作传送门起始点，其二用作传送门终点，其三用作传送门朝向；数用作传送门尺寸。可惜的是，媒质的平衡使得这一操作相当昂贵，每一级尺寸消耗 64 个充能紫水晶。",
+  "portalhexaddon.page.hexways.onewayportal": "接受三个向量和一个数。向量其一用作传送门起始点，其二用作传送门终点，其三用作传送门朝向；数用作传送门尺寸。可惜的是，媒质的平衡使得这一操作相当昂贵，每一级尺寸消耗 32 个充能紫水晶。",
   "portalhexaddon.page.hexways.twowayportal": "接受三个向量和一个数。前两个向量用作传送门的两端，第三个用作传送门朝向；数用作传送门尺寸。该操作比单向传送门便宜许多，每一级尺寸仅需消耗 16 个充能紫水晶。",
   "portalhexaddon.page.hexways.summonscry": "与单向传送门类似，但我无法穿过它。好在这个图案不需要卷轴才可绘制，它也比单向传送门便宜许多，仅需大约 4 个紫水晶碎片。",
   "portalhexaddon.page.hexways.moveportalinput": "接受一个传送门实体和一个位置向量，并将传送门的近端移至该向量处。极其适合移动放错位置的传送门。消耗 1 个紫水晶粉。",
