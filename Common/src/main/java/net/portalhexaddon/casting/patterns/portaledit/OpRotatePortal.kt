@@ -16,7 +16,7 @@ class OpRotatePortal : SpellAction {
      * The number of arguments from the stack that this action requires.
      */
     override val argc: Int = 2
-    private val cost = 1000
+    private val cost = 0
 
     /**
      * The method called when this Action is actually executed. Accepts the [args]
@@ -64,7 +64,7 @@ class OpRotatePortal : SpellAction {
             val flipPrt = PortalManipulation.findFlippedPortal(prt)
             val revPrt = PortalManipulation.findReversePortal(prt)
             if (revPrt !== null) {
-               revFlipPrt = PortalManipulation.findFlippedPortal(revPrt)!!
+               revFlipPrt = (PortalManipulation.findFlippedPortal(revPrt) as Portal?)!!
             }
 
             prt.setOrientation(PortalVecRotate(prtRot)[0], PortalVecRotate(prtRot)[1])

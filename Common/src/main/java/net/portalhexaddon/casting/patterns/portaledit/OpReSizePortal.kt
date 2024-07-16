@@ -7,7 +7,7 @@ import at.petrak.hexcasting.api.spell.iota.Iota
 import at.petrak.hexcasting.api.spell.mishaps.MishapBadEntity
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.Entity
-import net.minecraft.world.phys.Vec3
+import net.portalhexaddon.entites.HexPortalEntity
 import net.portalhexaddon.portals.PortalHexUtils
 import qouteall.imm_ptl.core.portal.Portal
 import qouteall.imm_ptl.core.portal.PortalManipulation
@@ -56,8 +56,9 @@ class OpReSizePortal : SpellAction {
         override fun cast(ctx: CastingContext) {
             val prt = (prtEntity as Portal)
             var revFlipPrt = prt
-            val shape = prt.specialShape
-            print(shape)
+            val prtKeepCasts = (prt as HexPortalEntity)
+            val prtSides = prtKeepCasts.portalSides
+            val prtRoll = prtKeepCasts.portalRoll
 
             val flipPrt = PortalManipulation.findFlippedPortal(prt)
             val revPrt = PortalManipulation.findReversePortal(prt)
@@ -67,44 +68,28 @@ class OpReSizePortal : SpellAction {
 
             prt.width = prtWidth
             prt.height = prtHight
-            prt.specialShape = null
-            prt.reloadAndSyncToClient()
-            PortalHexUtils.MakePortalNGon(prt, 6)
+            PortalHexUtils.MakePortalNGon(prt, prtSides, prtRoll)
             prt.reloadAndSyncToClient()
 
             if (flipPrt != null) {
                 flipPrt.width = prtWidth
                 flipPrt.height = prtHight
-                flipPrt.specialShape = null
-                flipPrt.reloadAndSyncToClient()
-                PortalHexUtils.MakePortalNGon(flipPrt, 6)
+                PortalHexUtils.MakePortalNGon(flipPrt, prtSides, prtRoll)
                 flipPrt.reloadAndSyncToClient()
             }
 
             if (revPrt != null) {
                 revPrt.width = prtWidth
                 revPrt.height = prtHight
-                revPrt.specialShape = null
-                revPrt.reloadAndSyncToClient()
-                PortalHexUtils.MakePortalNGon(revPrt, 6)
+                PortalHexUtils.MakePortalNGon(revPrt, prtSides, prtRoll)
                 revPrt.reloadAndSyncToClient()
             }
             if (revFlipPrt != null && revFlipPrt != prt) {
                 revFlipPrt.width = prtWidth
                 revFlipPrt.height = prtHight
-                revFlipPrt.specialShape = null
-                revFlipPrt.reloadAndSyncToClient()
-                PortalHexUtils.MakePortalNGon(revFlipPrt, 6)
+                PortalHexUtils.MakePortalNGon(revFlipPrt, prtSides, prtRoll)
                 revFlipPrt.reloadAndSyncToClient()
             }
-
-
-
-
-            /** WHAT TO DO:
-             *  1) set input to new location
-             *  2) set the output side to the input new location
-             */
         }
     }
 }

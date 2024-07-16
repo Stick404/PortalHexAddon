@@ -25,8 +25,7 @@ public class PortalHexAddonPatternRegistry {
     public static HexPattern ONEWAYPORTAL = registerPerWorld(HexPattern.fromAngles("awqwqwadadadaadadaqwdee", HexDir.EAST), "onewayportal", new OpOneWayPortal());
     public static HexPattern REMOVEPORTAL = register(HexPattern.fromAngles("wdeeqawqwqwaedaqwqad", HexDir.WEST),"removeportal", new OpRemovePortal());
     public static HexPattern ROTATEPORTAL = register(HexPattern.fromAngles("waqqedaqqqa", HexDir.EAST),"rotateportal", new OpRotatePortal());
-    public static HexPattern MOVEPORTALINPUT = register(HexPattern.fromAngles("waqqedwewewdqee", HexDir.EAST), "moveportalinput", new OpMovePortalInput());
-    public static HexPattern MOVEPORTALOUTPUT = register(HexPattern.fromAngles("eedwaqqedwewewd", HexDir.NORTH_EAST), "moveportaloutput", new OpMovePortalOutput());
+    public static HexPattern MOVEPORTALINPUT = register(HexPattern.fromAngles("wdeeqawwqqwwa", HexDir.WEST), "moveportalinput", new OpMovePortalInput());
     public static HexPattern SETPORTALSIDES = register(HexPattern.fromAngles("waqqqadawqadadaq", HexDir.EAST), "setportalsides", new OpPortalSides());
     public static HexPattern RESIZEPORTAL = register(HexPattern.fromAngles("waqqwdedwqqwwdwewdw", HexDir.EAST), "resizeportal", new OpReSizePortal());
     public static HexPattern SUMMONSCRY = register(HexPattern.fromAngles("wdeeqawqwqwa", HexDir.WEST), "summonscry", new OpPonderingMyOrb());

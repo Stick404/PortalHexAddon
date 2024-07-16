@@ -16,7 +16,7 @@ class OpMovePortalInput : SpellAction {
      * The number of arguments from the stack that this action requires.
      */
     override val argc: Int = 2
-    private val cost = MediaConstants.DUST_UNIT
+    private val cost = MediaConstants.DUST_UNIT * 2
 
     /**
      * The method called when this Action is actually executed. Accepts the [args]
@@ -58,7 +58,7 @@ class OpMovePortalInput : SpellAction {
             val flipPrt = PortalManipulation.findFlippedPortal(prt)
             val revPrt = PortalManipulation.findReversePortal(prt)
             if (revPrt !== null) {
-               revFlipPrt = PortalManipulation.findFlippedPortal(revPrt)!!
+               revFlipPrt = (PortalManipulation.findFlippedPortal(revPrt) as Portal?)!!
             }
 
 
@@ -78,12 +78,6 @@ class OpMovePortalInput : SpellAction {
                 flipPrt.moveTo(prtLoc)
                 flipPrt.reloadAndSyncToClient()
             }
-
-
-            /** WHAT TO DO:
-             *  1) set input to new location
-             *  2) set the output side to the input new location
-             */
         }
     }
 }

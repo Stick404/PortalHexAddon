@@ -56,7 +56,7 @@ class OpOneWayPortal : SpellAction {
                 prtSize
             )
 
-            PortalHexUtils.MakePortalNGon(portal,6)
+            PortalHexUtils.MakePortalNGon(portal,6 ,0.0)
 
             val portal2 = PortalAPI.createFlippedPortal(portal)
 

@@ -44,29 +44,29 @@ class OpPonderingMyOrb : SpellAction {
 
     private data class Spell(val prtPos: Vector3f, val prtPosOut: Vec3, val prtRot: Vec3, val prtSize: Double) : RenderedSpell {
         override fun cast(ctx: CastingContext) {
-            val portal: Portal? = Portal.entityType.create(ctx.world)
+            val prt: Portal? = Portal.entityType.create(ctx.world)
 
-            portal!!.originPos = Vec3(prtPos)
-            portal.setDestinationDimension(ctx.world.dimension())
-            portal.setDestination(prtPosOut)
-            portal.setOrientationAndSize(
+            prt!!.originPos = Vec3(prtPos)
+            prt.setDestinationDimension(ctx.world.dimension())
+            prt.setDestination(prtPosOut)
+            prt.setOrientationAndSize(
                 PortalVecRotate(prtRot)[0],
                 PortalVecRotate(prtRot)[1],
                 prtSize,
                 prtSize
             )
-            PortalHexUtils.MakePortalNGon(portal,6)
+            PortalHexUtils.MakePortalNGon(prt,6, 0.0)
 
-            val portal2 = PortalAPI.createFlippedPortal(portal)
+            val portal2 = PortalAPI.createFlippedPortal(prt)
 
-            portal.isInteractable = false
+            prt.isInteractable = false
             portal2.isInteractable = false
-            portal.teleportable = false
+            prt.teleportable = false
             portal2.teleportable = false
-            
 
-            portal.level.addFreshEntity(portal2)
-            portal.level.addFreshEntity(portal)
+
+            prt.level.addFreshEntity(portal2)
+            prt.level.addFreshEntity(prt)
         }
     }
 }

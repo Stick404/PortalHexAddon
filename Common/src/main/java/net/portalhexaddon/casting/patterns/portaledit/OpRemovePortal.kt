@@ -18,7 +18,7 @@ class OpRemovePortal : SpellAction {
      * The number of arguments from the stack that this action requires.
      */
     override val argc: Int = 1
-    val cost = 16 * MediaConstants.SHARD_UNIT
+    val cost = 0
 
     /**
      * The method called when this Action is actually executed. Accepts the [args]
