@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class PortalAmbit {
     public static Modification ambitModifier (CastingContext ctx, Vec3 pos, Boolean original){
         boolean modi = false;
-        ArrayList<Entity> portalsInAmbit = (ArrayList<Entity>) PortalHexUtils.Companion.GetPortalInAmbit(ctx);
+        ArrayList<Entity> portalsInAmbit = (ArrayList<Entity>) PortalHexUtils.Companion.GetPortalInAmbit(ctx, ctx.getCaster().position());
         for (Entity e : portalsInAmbit) {
             Portal Prt = (Portal) e;
             Double ambitDistLeft = (32 - Prt.getEyePosition().distanceTo(ctx.getCaster().position())) / 2.0;

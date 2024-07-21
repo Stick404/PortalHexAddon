@@ -4,7 +4,6 @@ import at.petrak.hexcasting.api.spell.*
 import at.petrak.hexcasting.api.spell.casting.CastingContext
 import at.petrak.hexcasting.api.spell.iota.Iota
 import at.petrak.hexcasting.api.spell.mishaps.MishapBadEntity
-import at.petrak.hexcasting.api.spell.mishaps.MishapEntityTooFarAway
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.Entity
 import qouteall.imm_ptl.core.portal.Portal

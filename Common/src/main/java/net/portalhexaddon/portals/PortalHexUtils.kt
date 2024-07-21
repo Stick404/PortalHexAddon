@@ -37,12 +37,9 @@ class PortalHexUtils {
             portal.cullableYEnd = 0.0
         }
 
-        fun GetPortalInAmbit(ctx: CastingContext): List<Entity> {
-            val aabb = AABB(ctx.position.add(Vec3(-32.0, -32.0, -32.0)), ctx.position.add(Vec3(32.0, 32.0, 32.0))) //this non laggy solution gotten from this: https://github.com/FallingColors/HexMod/blob/c8510ed83d/Common/src/main/java/at/petrak/hexcasting/common/casting/operators/selectors/OpGetEntitiesBy.kt
-            val entitiesGot = ctx.world.getEntities(null, aabb) {
-                isReasonablySelectable(ctx, it)
-                        && it.distanceToSqr(ctx.position) <= 32 * 32
-            }
+        fun GetPortalInAmbit(ctx: CastingContext, pos: Vec3): List<Entity> { //this used to be a lot bigger, but has gotten a bit smaller, still its own function due to... me not wanting to remove it lol
+            val aabb = AABB(pos.add(Vec3(-32.0, -32.0, -32.0)), pos.add(Vec3(32.0, 32.0, 32.0))) //this non laggy solution gotten from this: https://github.com/FallingColors/HexMod/blob/c8510ed83d/Common/src/main/java/at/petrak/hexcasting/common/casting/operators/selectors/OpGetEntitiesBy.kt
+            val entitiesGot = ctx.world.getEntities(Portal.entityType, aabb) {true}
             return entitiesGot
         }
         fun PortalVecRotate(prtRot: Vec3): List<Vec3> {
