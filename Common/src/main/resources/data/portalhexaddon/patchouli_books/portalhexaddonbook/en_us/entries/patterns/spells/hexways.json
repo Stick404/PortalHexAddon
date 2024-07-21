@@ -60,7 +60,7 @@
       "type": "hexcasting:pattern",
       "op_id": "portalhexaddon:setportalsides",
       "anchor": "portalhexaddon:setportalsides",
-      "input": "entity (Portal), num, num",
+      "input": "entity (Portal), num",
       "output": "",
       "text": "portalhexaddon.page.hexways.setportalsides"
     },
@@ -68,7 +68,7 @@
       "type": "hexcasting:pattern",
       "op_id": "portalhexaddon:resizeportal",
       "anchor": "portalhexaddon:resizeportal",
-      "input": "entity (Portal), vec",
+      "input": "entity (Portal), num, num",
       "output": "",
       "text": "portalhexaddon.page.hexways.resizeportal"
     },
