@@ -1,7 +1,7 @@
 {
   "name": "portalhexaddon.entry.hexways",
   "category": "hexcasting:patterns/spells",
-  "icon": "portalhexaddon:portal_staff",
+  "icon": "immersive_portals:portal_helper",
   "sortnum": 0,
   "advancement": "hexcasting:root",
   "read_by_default": true,
@@ -89,9 +89,9 @@
       "text": "portalhexaddon.page.hexways.getoutputinfo"
     },
     {
-      "title": "portalhexaddon.page.hexways.getoutputinfocont",
+      "title": "portalhexaddon.page.hexways.getoutputinfoconttitle",
       "type": "text",
-      "text": "portalhexaddon.page.hexways.getoutputinfo2"
+      "text": "portalhexaddon.page.hexways.getoutputinfocont"
     }
   ]
 }
