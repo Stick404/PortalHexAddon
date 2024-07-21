@@ -20,10 +20,10 @@
   "portalhexaddon.page.hexways.setportalsides": "As, well, $(italic)familiar/$, I am with hexagons, sadly they don't fit every situation. But with this spell, I may alter the count of a portal's sides and roll, free of cost.",
   "portalhexaddon.page.hexways.resizeportal": "Passing a portal, height, and width, I may change the size of the portal, reverting it to a hexagonal shape, curiously. Costs shards equal to the average of the height and width.",
   "portalhexaddon.page.hexways.getoutputinfo": "This nifty pattern returns a portal's output portal, or its output location as a vector if there is no output portal. This could be useful combined with Portal Ambit. Costs no _media.",
-  "portalhexaddon.page.hexways.getoutputinfocont": "After confusion, I concluded that this pattern works the best with Move Portal, due to getting the output portal, if it is a 2-way portal. Another use for this pattern may be for raycasts, since the casts don't pass through portals, but with this, I can emulate the raycast",
+  "portalhexaddon.page.hexways.getoutputinfocont": "After confusion, I concluded that this pattern works the best with Move Portal, due to getting the output portal, if it is a 2-way portal. Another use for this pattern may be for raycasts, since the casts don't pass through portals, but with this, I can emulate the raycast.",
   "portalhexaddon.page.hexways.rotateportal": "Ah, fickle rotation vectors. To my luck, I may use this spell to change the rotation of a given portal. Notably, it rotates its output as well, and at no cost.",
   "portalhexaddon.page.hexways.portalambittitle": "Portal Ambit",
-  "portalhexaddon.page.hexways.pageintro": "I have come across a method by which I can imitate the phenomenon of wormholes (or perhaps, electron tunneling?), using media. This discovery was powered by the presence of another modification, \"Immersive Portals\". How exciting! I shall utilize this revelation posthaste. ",
+  "portalhexaddon.page.hexways.pageintro": "I have come across a method by which I can imitate the phenomenon of wormholes (or perhaps, electron tunneling?), using media. This discovery was powered by the presence of another modification, \"Immersive Portals\". How exciting! I shall utilize this revelation posthaste.",
   "portalhexaddon.page.hexways.pageintrotitle": "Hex Portals?",
 
   "portalhexaddon.page.hexways.getoutputinfoconttitle": "Get Output Info, Cont."
