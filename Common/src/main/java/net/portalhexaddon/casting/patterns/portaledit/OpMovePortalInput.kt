@@ -5,6 +5,8 @@ import at.petrak.hexcasting.api.spell.*
 import at.petrak.hexcasting.api.spell.casting.CastingContext
 import at.petrak.hexcasting.api.spell.iota.Iota
 import at.petrak.hexcasting.api.spell.mishaps.MishapBadEntity
+import at.petrak.hexcasting.api.spell.mishaps.MishapEntityTooFarAway
+import at.petrak.hexcasting.api.spell.mishaps.MishapLocationTooFarAway
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.phys.Vec3
@@ -35,9 +37,10 @@ class OpMovePortalInput : SpellAction {
         val prtEnt: Entity = args.getEntity(0,argc)
         val prtLocation: Vec3 = args.getVec3(1,argc)
 
-        ctx.isEntityInRange(prtEnt)
-        ctx.isVecInRange(prtLocation)
 
+        ctx.assertVecInWorld(prtLocation)
+        ctx.assertVecInRange(prtLocation)
+        ctx.assertEntityInRange(prtEnt)
 
         if (prtEnt.type !== Portal.entityType) {
             throw MishapBadEntity(prtEnt, Component.translatable("portaltranslate"))

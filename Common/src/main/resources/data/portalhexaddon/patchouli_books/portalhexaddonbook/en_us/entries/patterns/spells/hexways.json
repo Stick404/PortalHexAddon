@@ -1,7 +1,7 @@
 {
   "name": "portalhexaddon.entry.hexways",
   "category": "hexcasting:patterns/spells",
-  "icon": "portalhexaddon:portal_staff",
+  "icon": "immersive_portals:portal_helper",
   "sortnum": 0,
   "advancement": "hexcasting:root",
   "read_by_default": true,
@@ -68,7 +68,7 @@
       "type": "hexcasting:pattern",
       "op_id": "portalhexaddon:resizeportal",
       "anchor": "portalhexaddon:resizeportal",
-      "input": "entity (Portal), vec",
+      "input": "entity (Portal), num, num",
       "output": "",
       "text": "portalhexaddon.page.hexways.resizeportal"
     },
@@ -87,6 +87,11 @@
       "input": "entity (Portal)",
       "output": "entity",
       "text": "portalhexaddon.page.hexways.getoutputinfo"
+    },
+    {
+      "title": "portalhexaddon.page.hexways.getoutputinfoconttitle",
+      "type": "text",
+      "text": "portalhexaddon.page.hexways.getoutputinfocont"
     }
   ]
 }

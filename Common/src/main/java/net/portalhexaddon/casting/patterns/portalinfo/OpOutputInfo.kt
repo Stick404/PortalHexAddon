@@ -16,7 +16,8 @@ class OpOutputInfo : ConstMediaAction {
     override val argc: Int = 1
     override fun execute(args: List<Iota>, ctx: CastingContext): List<Iota> {
         val prtEnt: Entity = args.getEntity(0,argc)
-        ctx.isEntityInRange(prtEnt)
+
+        ctx.assertEntityInRange(prtEnt)
 
         var prt = (prtEnt as Portal)
         var prtOut = PortalManipulation.findReversePortal(prt)

@@ -8,6 +8,8 @@ import at.petrak.hexcasting.api.spell.casting.CastingContext
 import at.petrak.hexcasting.api.spell.getEntity
 import at.petrak.hexcasting.api.spell.iota.Iota
 import at.petrak.hexcasting.api.spell.mishaps.MishapBadEntity
+import at.petrak.hexcasting.api.spell.mishaps.MishapEntityTooFarAway
+import at.petrak.hexcasting.api.spell.mishaps.MishapLocationTooFarAway
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.Entity
 import qouteall.imm_ptl.core.portal.Portal
@@ -36,7 +38,7 @@ class OpRemovePortal : SpellAction {
     override fun execute(args: List<Iota>, ctx: CastingContext): Triple<RenderedSpell, Int, List<ParticleSpray>> {
         val prtEnt: Entity = args.getEntity(0,argc)
 
-        ctx.isEntityInRange(prtEnt)
+        ctx.assertEntityInRange(prtEnt)
 
         if (prtEnt.type != Portal.entityType) {
             throw MishapBadEntity(prtEnt, Component.translatable("Portal"))

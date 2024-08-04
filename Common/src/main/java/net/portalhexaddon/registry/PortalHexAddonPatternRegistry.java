@@ -24,10 +24,10 @@ public class PortalHexAddonPatternRegistry {
     public static HexPattern TWOWAYPORTAL = registerPerWorld(HexPattern.fromAngles("wdeeqawqwqwadeaqadeaedaqae", HexDir.WEST), "twowayportal", new OpTwoWayPortal());
     public static HexPattern ONEWAYPORTAL = registerPerWorld(HexPattern.fromAngles("awqwqwadadadaadadaqwdee", HexDir.EAST), "onewayportal", new OpOneWayPortal());
     public static HexPattern REMOVEPORTAL = register(HexPattern.fromAngles("wdeeqawqwqwaedaqwqad", HexDir.WEST),"removeportal", new OpRemovePortal());
-    public static HexPattern ROTATEPORTAL = register(HexPattern.fromAngles("waqqedaqqqa", HexDir.EAST),"rotateportal", new OpRotatePortal());
-    public static HexPattern MOVEPORTALINPUT = register(HexPattern.fromAngles("wdeeqawwqqwwa", HexDir.WEST), "moveportalinput", new OpMovePortalInput());
+    public static HexPattern ROTATEPORTAL = register(HexPattern.fromAngles("waqqedwewewdqwdw", HexDir.EAST),"rotateportal", new OpRotatePortal());
+    public static HexPattern MOVEPORTALINPUT = register(HexPattern.fromAngles("waqqedwewewdadwwd", HexDir.EAST), "moveportalinput", new OpMovePortalInput());
     public static HexPattern SETPORTALSIDES = register(HexPattern.fromAngles("waqqqadawqadadaq", HexDir.EAST), "setportalsides", new OpPortalSides());
-    public static HexPattern RESIZEPORTAL = register(HexPattern.fromAngles("waqqwdedwqqwwdwewdw", HexDir.EAST), "resizeportal", new OpReSizePortal());
+    public static HexPattern RESIZEPORTAL = register(HexPattern.fromAngles("weaqaweewwawqwaw", HexDir.WEST), "resizeportal", new OpReSizePortal());
     public static HexPattern SUMMONSCRY = register(HexPattern.fromAngles("wdeeqawqwqwa", HexDir.WEST), "summonscry", new OpPonderingMyOrb());
     public static HexPattern GETOUTPUTINFO = register(HexPattern.fromAngles("waqqedwewewdawdwwwdw", HexDir.EAST), "getoutputinfo", new OpOutputInfo());
     //public static HexPattern ROTATESIDEOFPORTAL = registerPerWorld(HexPattern.fromAngles("waqqqqqdeewewwadeeed", HexDir.EAST), "rotatesideofportal", new OpRotateSideOfPortal());

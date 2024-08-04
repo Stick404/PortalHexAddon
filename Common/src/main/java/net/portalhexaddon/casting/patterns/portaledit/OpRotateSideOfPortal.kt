@@ -5,6 +5,7 @@ import at.petrak.hexcasting.api.spell.*
 import at.petrak.hexcasting.api.spell.casting.CastingContext
 import at.petrak.hexcasting.api.spell.iota.Iota
 import at.petrak.hexcasting.api.spell.mishaps.MishapBadEntity
+import at.petrak.hexcasting.api.spell.mishaps.MishapEntityTooFarAway
 import com.mojang.math.Quaternion
 import com.mojang.math.Vector3f
 import net.minecraft.network.chat.Component
@@ -16,6 +17,8 @@ import qouteall.imm_ptl.core.portal.Portal
 import qouteall.imm_ptl.core.portal.PortalManipulation
 import qouteall.q_misc_util.my_util.DQuaternion
 
+//right now this spell is not in the game
+//just dont want to work on it lol
 class OpRotateSideOfPortal : SpellAction {
     /**
      * The number of arguments from the stack that this action requires.
@@ -39,7 +42,8 @@ class OpRotateSideOfPortal : SpellAction {
     override fun execute(args: List<Iota>, ctx: CastingContext): Triple<RenderedSpell, Int, List<ParticleSpray>> {
         val prtEnt: Entity = args.getEntity(0,argc)
         val prtRot: Vec3 = args.getVec3(1,argc)
-        ctx.isEntityInRange(prtEnt)
+
+        ctx.assertEntityInRange(prtEnt)
 
         if (prtEnt.type !== Portal.entityType) {
             throw MishapBadEntity(prtEnt, Component.translatable("portaltranslate"))

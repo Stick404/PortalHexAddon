@@ -5,6 +5,7 @@ import at.petrak.hexcasting.api.spell.*
 import at.petrak.hexcasting.api.spell.casting.CastingContext
 import at.petrak.hexcasting.api.spell.iota.Iota
 import at.petrak.hexcasting.api.spell.mishaps.MishapBadEntity
+import at.petrak.hexcasting.api.spell.mishaps.MishapEntityTooFarAway
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.Entity
 import net.portalhexaddon.entites.HexPortalEntity
@@ -36,8 +37,7 @@ class OpReSizePortal : SpellAction {
         val prtHight: Double = args.getDoubleBetween(1,1.0/10.0,10.0,argc)
         val prtWidth: Double = args.getDoubleBetween(2,1.0/10.0,10.0,argc)
 
-        ctx.isEntityInRange(prtEnt)
-
+        ctx.assertEntityInRange(prtEnt)
 
         if (prtEnt.type !== Portal.entityType) {
             throw MishapBadEntity(prtEnt, Component.translatable("portaltranslate"))
@@ -56,9 +56,9 @@ class OpReSizePortal : SpellAction {
         override fun cast(ctx: CastingContext) {
             val prt = (prtEntity as Portal)
             var revFlipPrt = prt
-            val prtKeepCasts = (prt as HexPortalEntity)
-            val prtSides = prtKeepCasts.portalSides
-            val prtRoll = prtKeepCasts.portalRoll
+            //val prtKeepCasts = (prt as HexPortalEntity)
+            //val prtSides = prtKeepCasts.portalSides
+            //val prtRoll = prtKeepCasts.portalRoll
 
             val flipPrt = PortalManipulation.findFlippedPortal(prt)
             val revPrt = PortalManipulation.findReversePortal(prt)
@@ -68,26 +68,26 @@ class OpReSizePortal : SpellAction {
 
             prt.width = prtWidth
             prt.height = prtHight
-            PortalHexUtils.MakePortalNGon(prt, prtSides, prtRoll)
+            PortalHexUtils.MakePortalNGon(prt, 6, 0.0)
             prt.reloadAndSyncToClient()
 
             if (flipPrt != null) {
                 flipPrt.width = prtWidth
                 flipPrt.height = prtHight
-                PortalHexUtils.MakePortalNGon(flipPrt, prtSides, prtRoll)
+                PortalHexUtils.MakePortalNGon(flipPrt, 6, 0.0)
                 flipPrt.reloadAndSyncToClient()
             }
 
             if (revPrt != null) {
                 revPrt.width = prtWidth
                 revPrt.height = prtHight
-                PortalHexUtils.MakePortalNGon(revPrt, prtSides, prtRoll)
+                PortalHexUtils.MakePortalNGon(revPrt, 6, 0.0)
                 revPrt.reloadAndSyncToClient()
             }
             if (revFlipPrt != null && revFlipPrt != prt) {
                 revFlipPrt.width = prtWidth
                 revFlipPrt.height = prtHight
-                PortalHexUtils.MakePortalNGon(revFlipPrt, prtSides, prtRoll)
+                PortalHexUtils.MakePortalNGon(revFlipPrt, 6, 0.0)
                 revFlipPrt.reloadAndSyncToClient()
             }
         }

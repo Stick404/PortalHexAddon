@@ -5,6 +5,7 @@ import at.petrak.hexcasting.api.spell.*
 import at.petrak.hexcasting.api.spell.casting.CastingContext
 import at.petrak.hexcasting.api.spell.iota.Iota
 import at.petrak.hexcasting.api.spell.mishaps.MishapBadEntity
+import at.petrak.hexcasting.api.spell.mishaps.MishapEntityTooFarAway
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.Entity
 import net.portalhexaddon.entites.HexPortalEntity
@@ -38,8 +39,7 @@ class OpPortalSides : SpellAction {
         val prtSides: Int = args.getIntBetween(1,3,16,argc)
         val prtRoll: Double = args.getDoubleBetween(2,0.0,1.0,argc)
 
-        ctx.isEntityInRange(prtEnt)
-
+        ctx.assertEntityInRange(prtEnt)
 
         if (prtEnt.type !== Portal.entityType) {
             throw MishapBadEntity(prtEnt, Component.translatable("portaltranslate"))
@@ -56,9 +56,9 @@ class OpPortalSides : SpellAction {
         override fun cast(ctx: CastingContext) {
             val prt = (prtEntity as Portal)
             var revFlipPrt = prt
-            val prtKeepCasts = (prt as HexPortalEntity)
-            prtKeepCasts.portalSides = prtSides
-            prtKeepCasts.portalRoll = prtRoll
+            //val prtKeepCasts = (prt as HexPortalEntity)
+            //prtKeepCasts.portalSides = prtSides
+            //prtKeepCasts.portalRoll = prtRoll
 
             val flipPrt = PortalManipulation.findFlippedPortal(prt)
             val revPrt = PortalManipulation.findReversePortal(prt)

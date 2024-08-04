@@ -1,7 +1,12 @@
 package net.portalhexaddon.fabric;
 
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.core.Registry;
 import net.portalhexaddon.PortalHexAddon;
+import net.portalhexaddon.portals.PortalHexUtils;
+import net.portalhexaddon.registry.PortalHexAddonEntityRegistry;
+
+import java.net.BindException;
 
 /**
  * This is your loading entrypoint on fabric(-likes), in case you need to initialize
@@ -14,6 +19,7 @@ import net.portalhexaddon.PortalHexAddon;
 public class PortalHexAddonFabric implements ModInitializer {
     @Override
     public void onInitialize() {
+        PortalHexAddonEntityRegistry.registerEntities(PortalHexUtils.Companion.bind(Registry.ENTITY_TYPE));
         PortalHexAddon.init();
     }
 }
