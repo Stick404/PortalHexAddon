@@ -17,7 +17,7 @@ class OpMovePortalInput : SpellAction {
     /**
      * The number of arguments from the stack that this action requires.
      */
-    override val argc: Int = 2
+    override val argc: Int = 3
     private var cost = MediaConstants.DUST_UNIT * 2
 
     /**
@@ -34,9 +34,9 @@ class OpMovePortalInput : SpellAction {
      * etc.) should be in the private [Spell] data class below.
      */
     override fun execute(args: List<Iota>, ctx: CastingContext): Triple<RenderedSpell, Int, List<ParticleSpray>> {
-        val prtEnt: Entity = args.getEntity(0,argc)
-        val prtLocation: Vec3 = args.getVec3(1,argc)
-        val switch: Boolean = args.getBool(2,argc) //if true then its getting the input. If false, its getting output
+        val prtEnt: Entity = args.getEntity(1,argc)
+        val prtLocation: Vec3 = args.getVec3(2,argc)
+        val switch: Boolean = args.getBool(0,argc) //if true then its getting the input. If false, its getting output
 
         if(!switch) {
             cost = cost.times(2) //if the spell is targeting output, double costs
@@ -73,6 +73,11 @@ class OpMovePortalInput : SpellAction {
                 prt.moveTo(prtLoc)
                 prt.reloadAndSyncToClient()
 
+                if (flipPrt != null) {
+                    flipPrt.moveTo(prtLoc)
+                    flipPrt.reloadAndSyncToClient()
+                }
+
                 if (revPrt != null) {
                     revPrt.setDestination(prtLoc)
                     revPrt.reloadAndSyncToClient()
@@ -82,18 +87,20 @@ class OpMovePortalInput : SpellAction {
                     revFlipPrt.reloadAndSyncToClient()
                 }
 
-                if (flipPrt != null) {
-                    flipPrt.moveTo(prtLoc)
-                    flipPrt.reloadAndSyncToClient()
-                }
+
 
             }else{//getting output
 
                 prt.setDestination(prtLoc)
                 prt.reloadAndSyncToClient()
 
+                if (flipPrt != null) {
+                    flipPrt.setDestination(prtLoc)
+                    flipPrt.reloadAndSyncToClient()
+                }
+
                 if (revPrt != null) {
-                    revPrt.setDestination(prtLoc)
+                    revPrt.moveTo(prtLoc)
                     revPrt.reloadAndSyncToClient()
                 }
                 if (revFlipPrt != null && revFlipPrt != prt) {
@@ -101,10 +108,7 @@ class OpMovePortalInput : SpellAction {
                     revFlipPrt.reloadAndSyncToClient()
                 }
 
-                if (flipPrt != null) {
-                    flipPrt.moveTo(prtLoc)
-                    flipPrt.reloadAndSyncToClient()
-                }
+
             }
         }
     }
