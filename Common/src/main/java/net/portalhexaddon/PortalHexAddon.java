@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
  * if you are using Architectury as intended.
  */
 public class PortalHexAddon {
-    public static final String MOD_ID = "portalhexaddon";
+    public static final String MOD_ID = "hexways";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     public static void init() {

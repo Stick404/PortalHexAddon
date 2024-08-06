@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "portalhexaddon",
+  "id": "hexways",
   "version": "${version}",
-  "name": "Portal Hex Addon",
+  "name": "Hex Ways",
   "description": "Portal Hex Addon addon for Hex Casting",
   "authors": [
     "Stickia",
