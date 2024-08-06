@@ -18,7 +18,7 @@ class OpMovePortalInput : SpellAction {
      * The number of arguments from the stack that this action requires.
      */
     override val argc: Int = 2
-    private val cost = MediaConstants.DUST_UNIT * 2
+    private var cost = MediaConstants.DUST_UNIT * 2
 
     /**
      * The method called when this Action is actually executed. Accepts the [args]
@@ -36,7 +36,11 @@ class OpMovePortalInput : SpellAction {
     override fun execute(args: List<Iota>, ctx: CastingContext): Triple<RenderedSpell, Int, List<ParticleSpray>> {
         val prtEnt: Entity = args.getEntity(0,argc)
         val prtLocation: Vec3 = args.getVec3(1,argc)
+        val switch: Boolean = args.getBool(2,argc) //if true then its getting the input. If false, its getting output
 
+        if(!switch) {
+            cost = cost.times(2) //if the spell is targeting output, double costs
+        }
 
         ctx.assertVecInWorld(prtLocation)
         ctx.assertVecInRange(prtLocation)
@@ -47,13 +51,13 @@ class OpMovePortalInput : SpellAction {
         }
 
         return Triple(
-            Spell(prtEnt, prtLocation),
+            Spell(prtEnt, prtLocation,switch),
             cost,
             listOf(ParticleSpray.burst(ctx.caster.position(), 1.0))
         )
     }
 
-    private data class Spell(var prtEntity: Entity, var prtLoc: Vec3) : RenderedSpell {
+    private data class Spell(var prtEntity: Entity, var prtLoc: Vec3, var switch: Boolean) : RenderedSpell {
         override fun cast(ctx: CastingContext) {
             val prt = (prtEntity as Portal)
             var revFlipPrt = prt
@@ -64,22 +68,43 @@ class OpMovePortalInput : SpellAction {
                revFlipPrt = (PortalManipulation.findFlippedPortal(revPrt) as Portal?)!!
             }
 
+            if (switch){//getting input
 
-            if (revPrt != null) {
-                revPrt.setDestination(prtLoc)
-                revPrt.reloadAndSyncToClient()
-            }
-            if (revFlipPrt != null && revFlipPrt != prt) {
-                revFlipPrt.setDestination(prtLoc)
-                revFlipPrt.reloadAndSyncToClient()
-            }
+                prt.moveTo(prtLoc)
+                prt.reloadAndSyncToClient()
 
-            prt.moveTo(prtLoc)
-            prt.reloadAndSyncToClient()
+                if (revPrt != null) {
+                    revPrt.setDestination(prtLoc)
+                    revPrt.reloadAndSyncToClient()
+                }
+                if (revFlipPrt != null && revFlipPrt != prt) {
+                    revFlipPrt.setDestination(prtLoc)
+                    revFlipPrt.reloadAndSyncToClient()
+                }
 
-            if (flipPrt != null) {
-                flipPrt.moveTo(prtLoc)
-                flipPrt.reloadAndSyncToClient()
+                if (flipPrt != null) {
+                    flipPrt.moveTo(prtLoc)
+                    flipPrt.reloadAndSyncToClient()
+                }
+
+            }else{//getting output
+
+                prt.setDestination(prtLoc)
+                prt.reloadAndSyncToClient()
+
+                if (revPrt != null) {
+                    revPrt.setDestination(prtLoc)
+                    revPrt.reloadAndSyncToClient()
+                }
+                if (revFlipPrt != null && revFlipPrt != prt) {
+                    revFlipPrt.moveTo(prtLoc)
+                    revFlipPrt.reloadAndSyncToClient()
+                }
+
+                if (flipPrt != null) {
+                    flipPrt.moveTo(prtLoc)
+                    flipPrt.reloadAndSyncToClient()
+                }
             }
         }
     }
