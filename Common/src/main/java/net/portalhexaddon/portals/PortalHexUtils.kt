@@ -1,7 +1,7 @@
 package net.portalhexaddon.portals
 
 import at.petrak.hexcasting.api.spell.casting.CastingContext
-import at.petrak.hexcasting.common.casting.operators.selectors.OpGetEntitiesBy.Companion.isReasonablySelectable
+import com.mojang.math.Quaternion
 import net.minecraft.core.Registry
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.Entity
@@ -38,7 +38,7 @@ class PortalHexUtils {
         }
 
         fun GetPortalInAmbit(ctx: CastingContext, pos: Vec3): List<Entity> { //this used to be a lot bigger, but has gotten a bit smaller, still its own function due to... me not wanting to remove it lol
-            val aabb = AABB(pos.add(Vec3(-32.0, -32.0, -32.0)), pos.add(Vec3(32.0, 32.0, 32.0))) //this non laggy solution gotten from this: https://github.com/FallingColors/HexMod/blob/c8510ed83d/Common/src/main/java/at/petrak/hexcasting/common/casting/operators/selectors/OpGetEntitiesBy.kt
+            val aabb = AABB(pos.add(Vec3(-32.0, -32.0, -32.0)), pos.add(Vec3(32.0, 32.0, 32.0))) //this non-laggy solution gotten from this: https://github.com/FallingColors/HexMod/blob/c8510ed83d/Common/src/main/java/at/petrak/hexcasting/common/casting/operators/selectors/OpGetEntitiesBy.kt
             val entitiesGot = ctx.world.getEntities(Portal.entityType, aabb) {true}
             return entitiesGot
         }
@@ -60,7 +60,23 @@ class PortalHexUtils {
         }
         //this is less of a "portal" util, and more of a "so Stickia does not lose her mind" util
         //I *really* dont want to remake this in Java for the entity Registry stuff. Or remake the fabric entry in Kotlin
-        public fun <T> bind(registry: Registry<in T>): BiConsumer<T, ResourceLocation> =
+        fun <T> bind(registry: Registry<in T>): BiConsumer<T, ResourceLocation> =
             BiConsumer<T, ResourceLocation> { t, id -> Registry.register(registry, id, t) }
+
+        fun EularToQuat(prtRot: Vec3): Quaternion { //because of Mojank:tm:, I need to have my own function maybe
+            val c1 = cos(prtRot.x/2) //got this formula from http://www.euclideanspace.com/maths/geometry/rotations/conversions/eulerToQuaternion/index.htm
+            val s1 = sin(prtRot.x/2)
+            val c2 = cos(prtRot.y/2)
+            val s2 = sin(prtRot.y/2)
+            val c3 = cos(prtRot.z/2)
+            val s3 = sin(prtRot.z/2)
+            val c1c2 = c1*c2
+            val s1s2 = s1*s2
+            val w = c1c2 * c3 - s1s2 * s3 //dont ask my why this is so jank, I dont want to optimive it yet
+            val x = c1c2*s3 + s1s2*c3
+            val y = s1*c2*c3 + c1*s2*s3
+            val z = c1*s2*c3 - s1*c2*s3
+            return  Quaternion(w.toFloat(),x.toFloat(), y.toFloat(), z.toFloat())
+        }
     }
 }

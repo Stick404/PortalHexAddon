@@ -5,20 +5,20 @@ import at.petrak.hexcasting.api.spell.*
 import at.petrak.hexcasting.api.spell.casting.CastingContext
 import at.petrak.hexcasting.api.spell.iota.Iota
 import at.petrak.hexcasting.api.spell.mishaps.MishapBadEntity
-import at.petrak.hexcasting.api.spell.mishaps.MishapEntityTooFarAway
 import com.mojang.math.Quaternion
 import com.mojang.math.Vector3f
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.phys.Vec3
+import net.portalhexaddon.portals.PortalHexUtils.Companion.EularToQuat
 import net.portalhexaddon.portals.PortalHexUtils.Companion.PortalVecRotate
 import qouteall.imm_ptl.core.api.PortalAPI
 import qouteall.imm_ptl.core.portal.Portal
 import qouteall.imm_ptl.core.portal.PortalManipulation
 import qouteall.q_misc_util.my_util.DQuaternion
+import qouteall.q_misc_util.my_util.DQuaternion.fromMcQuaternion
 
-//right now this spell is not in the game
-//just dont want to work on it lol
+
 class OpRotateSideOfPortal : SpellAction {
     /**
      * The number of arguments from the stack that this action requires.
@@ -60,9 +60,9 @@ class OpRotateSideOfPortal : SpellAction {
         override fun cast(ctx: CastingContext) {
             val prt = (prtEntity as Portal)
             var revFlipPrt = prt
-            val quat = DQuaternion.fromMcQuaternion(Quaternion.fromXYZDegrees(Vector3f(prtRot.x.toFloat(),prtRot.y.toFloat(),prtRot.z.toFloat())))
-            //Quaternion.fromXYZ(prtRot.x.toFloat(),prtRot.y.toFloat(),prtRot.z.toFloat()))
-            println(prt)
+            val prtRotQuad = PortalVecRotate(prtRot)[0] //Needing to cross the vec first with Y
+            //val quat = Quaternion.fromXYZ(Vector3f(prtRotQuad.x.toFloat(),prtRotQuad.y.toFloat(),prtRotQuad.z.toFloat()))
+            val quat = EularToQuat(prtRotQuad)
 
             val flipPrt = PortalManipulation.findFlippedPortal(prt)
             val revPrt = PortalManipulation.findReversePortal(prt)
@@ -70,11 +70,11 @@ class OpRotateSideOfPortal : SpellAction {
                 revFlipPrt = PortalManipulation.findFlippedPortal(revPrt)!!
             }
 
-            prt.rotation = quat.toMcQuaternion()
+            prt.setRotationTransformation(quat)
             prt.reloadAndSyncToClient()
 
             if (flipPrt !== null) {
-                PortalAPI.setPortalOrientationQuaternion(flipPrt, quat)
+                flipPrt.setRotationTransformation(quat)
                 flipPrt.reloadAndSyncToClient()
             }
             if (revPrt !== null) {
