@@ -2,19 +2,19 @@
   "parent": "minecraft:item/handheld_rod",
   "overrides": [
     {
-      "model": "portalhexaddon:item/portal_staff",
+      "model": "hexways:item/portal_staff",
       "predicate": {
         "hexgloop:is_casting": 0.0
       }
     },
     {
-      "model": "portalhexaddon:item/portal_staff_casting",
+      "model": "hexways:item/portal_staff_casting",
       "predicate": {
         "hexgloop:is_casting": 1
       }
     }
   ],
   "textures": {
-    "layer0": "portalhexaddon:item/portal_staff"
+    "layer0": "hexways:item/portal_staff"
   }
 }
