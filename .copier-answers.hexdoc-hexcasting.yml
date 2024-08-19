@@ -1,0 +1,27 @@
+# Changes here will be overwritten by Copier. NEVER EDIT MANUALLY
+# See: https://copier.readthedocs.io/en/stable/configuring/#the-copier-answersyml-file
+_commit: v0.1.11
+_src_path: gh:hexdoc-dev/hexdoc-hexcasting-template
+author: Stickia
+book_id: hexcasting:thehexbook
+default_branch: main
+github_repo: hexways
+gradle_mod_version_key: '6.1'
+hexdoc_mod_plugin_classname: hexwaysModPlugin
+hexdoc_plugin_classname: hexwaysPlugin
+java_lang:
+    ext: kt
+    src: kotlin
+java_package: net/hexways
+mod_display_name: Hex Ways
+modid: hexways
+multiloader: false
+package_export_root: doc/src/hexdoc_hexways/_export
+package_name: hexdoc-hexways
+package_slug: hexdoc_hexways
+package_src: doc/src/hexdoc_hexways
+pages_url: https://stickia.github.io/hexways/
+pattern_regex:
+    per_world_value: 'true'
+    regex: HexPattern\.fromAngles\("(?P<signature>[qweasd]+)", HexDir\.(?P<startdir>\w+)\),\s*modLoc\("(?P<name>[^"]+)"\)[^;]+?(?:makeConstantOp|Op\w+|Widget\.\w+)(?:[^;]*(?P<is_per_world>true)\);)?
+pattern_registry: registry/hexwaysPatternRegistry.java
