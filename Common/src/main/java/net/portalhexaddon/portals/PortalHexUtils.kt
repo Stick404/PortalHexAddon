@@ -3,6 +3,7 @@ package net.portalhexaddon.portals
 import at.petrak.hexcasting.api.spell.casting.CastingContext
 import com.mojang.math.Quaternion
 import net.minecraft.core.Registry
+import net.minecraft.core.SectionPos.z
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.phys.AABB
@@ -14,6 +15,8 @@ import java.util.stream.Collectors
 import java.util.stream.IntStream
 import kotlin.math.cos
 import kotlin.math.sin
+import kotlin.math.sqrt
+
 
 class PortalHexUtils {
     companion object {
@@ -64,18 +67,17 @@ class PortalHexUtils {
             BiConsumer<T, ResourceLocation> { t, id -> Registry.register(registry, id, t) }
 
         fun EularToQuat(prtRot: Vec3): Quaternion { //because of Mojank:tm:, I need to have my own function maybe
-            val c1 = cos(prtRot.x/2) //got this formula from http://www.euclideanspace.com/maths/geometry/rotations/conversions/eulerToQuaternion/index.htm
-            val s1 = sin(prtRot.x/2)
-            val c2 = cos(prtRot.y/2)
-            val s2 = sin(prtRot.y/2)
-            val c3 = cos(prtRot.z/2)
-            val s3 = sin(prtRot.z/2)
-            val c1c2 = c1*c2
-            val s1s2 = s1*s2
-            val w = c1c2 * c3 - s1s2 * s3 //dont ask my why this is so jank, I dont want to optimive it yet
-            val x = c1c2*s3 + s1s2*c3
-            val y = s1*c2*c3 + c1*s2*s3
-            val z = c1*s2*c3 - s1*c2*s3
+            val c1 = cos(prtRot.y) //got this formula from http://www.euclideanspace.com/maths/geometry/rotations/conversions/eulerToQuaternion/index.htm
+            val s1 = sin(prtRot.y)
+            val c2 = cos(prtRot.z)
+            val s2 = sin(prtRot.z)
+            val c3 = cos(prtRot.x)
+            val s3 = sin(prtRot.x)
+            val w = sqrt(1.0 + c1 * c2 + c1 * c3 - s1 * s2 * s3 + c2 * c3) / 2.0
+            val w4  = (4.0 * w)
+            val x = (c2 * s3 + c1 * s3 + s1 * s2 * c3) / w4
+            val y = (s1 * c2 + s1 * c3 + c1 * s2 * s3) / w4
+            val z = ((-s1 * s3 + c1 * s2 * c3 + s2) / w4).toInt()
             return  Quaternion(w.toFloat(),x.toFloat(), y.toFloat(), z.toFloat())
         }
     }

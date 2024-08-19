@@ -60,9 +60,13 @@ class OpRotateSideOfPortal : SpellAction {
         override fun cast(ctx: CastingContext) {
             val prt = (prtEntity as Portal)
             var revFlipPrt = prt
-            val prtRotQuad = PortalVecRotate(prtRot)[0] //Needing to cross the vec first with Y
+
+            //jeez this is a graveyard of failed Eular to Quat
+
+            //val prtRotQuad = PortalVecRotate(prtRot)[0] //Needing to cross the vec first with Y
             //val quat = Quaternion.fromXYZ(Vector3f(prtRotQuad.x.toFloat(),prtRotQuad.y.toFloat(),prtRotQuad.z.toFloat()))
-            val quat = EularToQuat(prtRotQuad)
+            //val quat = EularToQuat(prtRotQuad) //prtRotQuad.multiply(-1.0,-1.0,-1.0)
+            val quat = DQuaternion(1.0,prtRot.x,prtRot.y,prt.z)
 
             val flipPrt = PortalManipulation.findFlippedPortal(prt)
             val revPrt = PortalManipulation.findReversePortal(prt)
@@ -70,11 +74,11 @@ class OpRotateSideOfPortal : SpellAction {
                 revFlipPrt = PortalManipulation.findFlippedPortal(revPrt)!!
             }
 
-            prt.setRotationTransformation(quat)
+            prt.setRotationTransformationD(quat)
             prt.reloadAndSyncToClient()
 
             if (flipPrt !== null) {
-                flipPrt.setRotationTransformation(quat)
+                flipPrt.setRotationTransformationD(quat)
                 flipPrt.reloadAndSyncToClient()
             }
             if (revPrt !== null) {
