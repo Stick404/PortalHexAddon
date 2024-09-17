@@ -9,6 +9,7 @@
   "hexcasting.spell.hexways:getoutputinfo": "获取出口信息",
   "hexcasting.spell.hexways:resizeportal": "重设传送门尺寸",
   "hexcasting.spell.hexways:setportalsides": "设置传送门边数",
+  "hexcasting.spell.hexways:rotatesideofportal": "旋转输出传送门 :weedHexxy:",
 
   "portalhexaddon.entry.hexways": "Hex Ways",
   "portalhexaddon.page.hexways.onewayportal": "参数与双向传送门相同，但制造出的传送门仅供单向通行。更为特化的传送门消耗也更多，每级尺寸消耗 32 个充能紫水晶。",
